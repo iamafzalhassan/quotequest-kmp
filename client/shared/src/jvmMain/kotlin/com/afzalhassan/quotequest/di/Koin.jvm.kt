@@ -1,0 +1,17 @@
+package com.afzalhassan.quotequest.di
+
+import com.afzalhassan.quotequest.data.DATA_STORE_FILE
+import com.afzalhassan.quotequest.data.createDataStore
+import com.afzalhassan.quotequest.data.createHttpClient
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
+import java.io.File
+
+fun initKoin() {
+    startKoin {
+        modules(appModule, module {
+            single { createDataStore(File(System.getProperty("user.home"), ".quotequest/$DATA_STORE_FILE").absolutePath) }
+            single { createHttpClient("http://localhost:8080", get()) }
+        })
+    }
+}

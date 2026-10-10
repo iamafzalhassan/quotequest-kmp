@@ -22,7 +22,7 @@ class AuthController(
 
     @PostMapping("/auth/login")
     fun login(@Valid @RequestBody request: LoginRequest): LoginResponse {
-        val user = userRepository.findByEmail(request.email)
+        val user = userRepository.findByEmailIgnoreCase(request.email)
         if (user == null || !passwordEncoder.matches(request.password, user.passwordHash)) {
             throw ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid email or password")
         }
