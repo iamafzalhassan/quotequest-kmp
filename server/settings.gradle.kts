@@ -1,1 +1,1 @@
-rootProject.name = "quotequest-server"
+rootProject.name = "quotequest"
