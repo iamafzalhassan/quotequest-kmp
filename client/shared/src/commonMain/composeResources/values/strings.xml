@@ -15,4 +15,15 @@
     <string name="error_invalid_credentials">Wrong email or password</string>
     <string name="error_server">Something went wrong. Please try again.</string>
     <string name="error_connection">Can\'t reach the server. Check your connection.</string>
+    <string name="tab_quiz">Quiz</string>
+    <string name="tab_settings">Settings</string>
+    <string name="tab_profile">Profile</string>
+    <string name="profile_logout">Log out</string>
+    <string name="action_retry">Try again</string>
+    <string name="settings_mode_title">Quiz mode</string>
+    <string name="mode_binary">Yes / No</string>
+    <string name="mode_multiple">Multiple choice</string>
+    <string name="mode_binary_description">See a quote and one author. Did they say it? Answer yes or no.</string>
+    <string name="mode_multiple_description">See a quote and pick the right author from three options.</string>
+    <string name="settings_mode_restart_note">Changing the mode starts a new quiz.</string>
 </resources>

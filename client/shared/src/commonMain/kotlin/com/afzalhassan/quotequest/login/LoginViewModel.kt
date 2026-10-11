@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.afzalhassan.quotequest.data.LocalStore
 import com.afzalhassan.quotequest.data.LoginRequest
 import com.afzalhassan.quotequest.data.QuoteQuestApi
+import com.afzalhassan.quotequest.toMessage
 import io.ktor.client.plugins.ClientRequestException
-import io.ktor.client.plugins.ResponseException
 import io.ktor.http.HttpStatusCode
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,11 +16,9 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
 import quotequest.shared.generated.resources.Res
-import quotequest.shared.generated.resources.error_connection
 import quotequest.shared.generated.resources.error_email_required
 import quotequest.shared.generated.resources.error_invalid_credentials
 import quotequest.shared.generated.resources.error_password_required
-import quotequest.shared.generated.resources.error_server
 
 class LoginViewModel(
     private val api: QuoteQuestApi,
@@ -43,7 +41,8 @@ class LoginViewModel(
         if (current.isLoading) return
 
         val emailError = if (current.email.isBlank()) Res.string.error_email_required else null
-        val passwordError = if (current.password.isEmpty()) Res.string.error_password_required else null
+        val passwordError =
+            if (current.password.isEmpty()) Res.string.error_password_required else null
         if (emailError != null || passwordError != null) {
             _state.update { it.copy(emailError = emailError, passwordError = passwordError) }
             return
@@ -63,8 +62,4 @@ class LoginViewModel(
     }
 }
 
-private fun Exception.toMessage(): StringResource = when {
-    this is ClientRequestException && response.status == HttpStatusCode.Unauthorized -> Res.string.error_invalid_credentials
-    this is ResponseException -> Res.string.error_server
-    else -> Res.string.error_connection
-}
+private fun Exception.toLoginMessage(): StringResource = (this as? ClientRequestException)?.takeIf { it.response.status == HttpStatusCode.Unauthorized }?.let { Res.string.error_invalid_credentials } ?: toMessage()

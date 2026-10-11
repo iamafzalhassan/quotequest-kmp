@@ -17,4 +17,5 @@ object AppSpacing {
     val radiusButton = 50.dp
     val radiusCard = 12.dp
     val radiusField = 10.dp
+    val avatar = 72.dp
 }
