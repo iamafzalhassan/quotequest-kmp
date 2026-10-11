@@ -18,29 +18,29 @@ import com.afzalhassan.quotequest.theme.QuoteQuestTheme
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun App() {
+fun App(onReady: () -> Unit = {}) {
     QuoteQuestTheme {
         Surface(Modifier.fillMaxSize()) {
             val viewModel = koinViewModel<AppViewModel>()
             val isLoggedIn by viewModel.isLoggedIn.collectAsStateWithLifecycle()
             val navController = rememberNavController()
+            val loggedIn = isLoggedIn
 
-            NavHost(navController, startDestination = Route.Splash) {
-                composable<Route.Splash> { SplashScreen() }
-                composable<Route.Login> { LoginScreen() }
-                composable<Route.Main> { MainScreen() }
-            }
-
-            LaunchedEffect(isLoggedIn) {
-                val target = when (isLoggedIn) {
-                    true -> Route.Main
-                    false -> Route.Login
-                    null -> return@LaunchedEffect
+            if (loggedIn == null) {
+                SplashScreen()
+            } else {
+                NavHost(navController, startDestination = if (loggedIn) Route.Main else Route.Login) {
+                    composable<Route.Login> { LoginScreen() }
+                    composable<Route.Main> { MainScreen() }
                 }
-                if (navController.currentDestination?.hasRoute(target::class) != true) {
-                    navController.navigate(target) {
-                        popUpTo(navController.graph.id) { inclusive = true }
+                LaunchedEffect(loggedIn) {
+                    val target = if (loggedIn) Route.Main else Route.Login
+                    if (navController.currentDestination?.hasRoute(target::class) != true) {
+                        navController.navigate(target) {
+                            popUpTo(navController.graph.id) { inclusive = true }
+                        }
                     }
+                    onReady()
                 }
             }
         }

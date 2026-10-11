@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
-private const val SPLASH_MIN_MILLIS = 1_000L
+private const val SPLASH_MIN_MILLIS = 500L
 
 class AppViewModel(localStore: LocalStore) : ViewModel() {
 
