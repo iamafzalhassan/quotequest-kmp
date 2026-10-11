@@ -38,7 +38,7 @@ internal fun createHttpClient(
     HttpResponseValidator {
         handleResponseExceptionWithRequest { cause, _ ->
             if ((cause as? ClientRequestException)?.response?.status == HttpStatusCode.Unauthorized) {
-                localStore.clearToken()
+                localStore.expireSession()
             }
         }
     }

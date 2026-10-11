@@ -12,6 +12,7 @@ import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.StringResource
@@ -19,6 +20,7 @@ import quotequest.shared.generated.resources.Res
 import quotequest.shared.generated.resources.error_email_required
 import quotequest.shared.generated.resources.error_invalid_credentials
 import quotequest.shared.generated.resources.error_password_required
+import quotequest.shared.generated.resources.error_session_expired
 
 class LoginViewModel(
     private val api: QuoteQuestApi,
@@ -27,6 +29,14 @@ class LoginViewModel(
 
     private val _state = MutableStateFlow(LoginUiState())
     val state: StateFlow<LoginUiState> = _state.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            if (localStore.isSessionExpired.first()) {
+                _state.update { it.copy(formError = Res.string.error_session_expired) }
+            }
+        }
+    }
 
     fun onEmailChange(email: String) {
         _state.update { it.copy(email = email, emailError = null, formError = null) }

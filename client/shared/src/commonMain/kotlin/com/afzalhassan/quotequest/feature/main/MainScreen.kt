@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.saveable.rememberSaveableStateHolder
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.afzalhassan.quotequest.feature.profile.ProfileScreen
@@ -39,6 +40,7 @@ private enum class MainTab(val label: StringResource, val icon: DrawableResource
 @Composable
 fun MainScreen() {
     var selectedTab by rememberSaveable { mutableStateOf(MainTab.Quiz) }
+    val tabStates = rememberSaveableStateHolder()
 
     Scaffold(
         bottomBar = {
@@ -58,10 +60,12 @@ fun MainScreen() {
         },
     ) { innerPadding ->
         Crossfade(targetState = selectedTab, modifier = Modifier.padding(innerPadding), label = "tab") { tab ->
-            when (tab) {
-                MainTab.Quiz -> QuizScreen()
-                MainTab.Settings -> SettingsScreen()
-                MainTab.Profile -> ProfileScreen()
+            tabStates.SaveableStateProvider(tab.name) {
+                when (tab) {
+                    MainTab.Quiz -> QuizScreen()
+                    MainTab.Settings -> SettingsScreen()
+                    MainTab.Profile -> ProfileScreen()
+                }
             }
         }
     }
