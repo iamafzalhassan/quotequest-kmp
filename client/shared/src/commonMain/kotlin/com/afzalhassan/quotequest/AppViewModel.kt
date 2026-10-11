@@ -2,7 +2,7 @@ package com.afzalhassan.quotequest
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.afzalhassan.quotequest.data.LocalStore
+import com.afzalhassan.quotequest.core.data.LocalStore
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

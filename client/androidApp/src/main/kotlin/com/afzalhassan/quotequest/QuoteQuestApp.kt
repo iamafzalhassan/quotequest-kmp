@@ -1,7 +1,7 @@
 package com.afzalhassan.quotequest
 
 import android.app.Application
-import com.afzalhassan.quotequest.di.initKoin
+import com.afzalhassan.quotequest.core.di.initKoin
 
 class QuoteQuestApp : Application() {
     override fun onCreate() {

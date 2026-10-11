@@ -11,10 +11,10 @@ import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.afzalhassan.quotequest.login.LoginScreen
-import com.afzalhassan.quotequest.main.MainScreen
-import com.afzalhassan.quotequest.splash.SplashScreen
-import com.afzalhassan.quotequest.theme.QuoteQuestTheme
+import com.afzalhassan.quotequest.feature.login.LoginScreen
+import com.afzalhassan.quotequest.feature.main.MainScreen
+import com.afzalhassan.quotequest.feature.splash.SplashScreen
+import com.afzalhassan.quotequest.core.ui.theme.QuoteQuestTheme
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
