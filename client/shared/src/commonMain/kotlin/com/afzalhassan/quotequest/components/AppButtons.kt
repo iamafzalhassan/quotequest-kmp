@@ -44,21 +44,23 @@ fun SecondaryButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     color: Color = AppColors.primary,
+    enabled: Boolean = true,
     isLoading: Boolean = false,
 ) {
+    val activeColor = if (enabled || isLoading) color else AppColors.textDisabled
     OutlinedButton(
         onClick = onClick,
         modifier = modifier.heightIn(min = AppSpacing.controlHeight),
-        enabled = !isLoading,
+        enabled = enabled && !isLoading,
         shape = RoundedCornerShape(AppSpacing.radiusButton),
-        border = BorderStroke(AppSpacing.hairline, color),
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = color, disabledContentColor = color),
+        border = BorderStroke(AppSpacing.hairline, if (enabled || isLoading) color else AppColors.divider),
+        colors = ButtonDefaults.outlinedButtonColors(contentColor = color, disabledContentColor = activeColor),
         contentPadding = PaddingValues(horizontal = AppSpacing.lg),
     ) {
         if (isLoading) {
             ActivityIndicator(color = color)
         } else {
-            Text(text, style = AppTheme.textStyles.button.copy(color = color))
+            Text(text, style = AppTheme.textStyles.button.copy(color = activeColor))
         }
     }
 }

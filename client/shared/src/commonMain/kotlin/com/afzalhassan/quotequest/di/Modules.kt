@@ -5,6 +5,7 @@ import com.afzalhassan.quotequest.data.LocalStore
 import com.afzalhassan.quotequest.data.QuoteQuestApi
 import com.afzalhassan.quotequest.login.LoginViewModel
 import com.afzalhassan.quotequest.profile.ProfileViewModel
+import com.afzalhassan.quotequest.quiz.QuizViewModel
 import com.afzalhassan.quotequest.settings.SettingsViewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
@@ -17,4 +18,5 @@ internal val appModule = module {
     viewModelOf(::LoginViewModel)
     viewModelOf(::ProfileViewModel)
     viewModelOf(::SettingsViewModel)
+    viewModelOf(::QuizViewModel)
 }

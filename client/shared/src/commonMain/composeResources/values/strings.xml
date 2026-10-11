@@ -26,4 +26,20 @@
     <string name="mode_binary_description">See a quote and one author. Did they say it? Answer yes or no.</string>
     <string name="mode_multiple_description">See a quote and pick the right author from three options.</string>
     <string name="settings_mode_restart_note">Changing the mode starts a new quiz.</string>
+    <string name="quiz_progress">Question %1$d of %2$d</string>
+    <string name="quiz_score">Score: %1$d</string>
+    <string name="quiz_binary_prompt">Did %1$s say it?</string>
+    <string name="quiz_multiple_prompt">Who said it?</string>
+    <string name="quiz_yes">Yes</string>
+    <string name="quiz_no">No</string>
+    <string name="quiz_correct">Correct!</string>
+    <string name="quiz_wrong">Sorry, you are wrong!</string>
+    <string name="quiz_right_answer">The right answer is: %1$s</string>
+    <string name="quiz_no_questions">No quotes are available right now.</string>
+    <string name="action_ok">OK</string>
+    <string name="results_title">Quiz complete</string>
+    <string name="results_score">%1$d / %2$d</string>
+    <string name="results_correct">Correct</string>
+    <string name="results_wrong">Wrong</string>
+    <string name="results_start_again">Start again</string>
 </resources>

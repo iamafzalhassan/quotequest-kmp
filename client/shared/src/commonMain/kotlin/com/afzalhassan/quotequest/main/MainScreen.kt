@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import com.afzalhassan.quotequest.components.TabPage
 import com.afzalhassan.quotequest.profile.ProfileScreen
+import com.afzalhassan.quotequest.quiz.QuizScreen
 import com.afzalhassan.quotequest.settings.SettingsScreen
 import org.jetbrains.compose.resources.DrawableResource
 import org.jetbrains.compose.resources.StringResource
@@ -59,7 +60,7 @@ fun MainScreen() {
     ) { innerPadding ->
         Crossfade(targetState = selectedTab, modifier = Modifier.padding(innerPadding), label = "tab") { tab ->
             when (tab) {
-                MainTab.Quiz -> TabPage(title = stringResource(Res.string.tab_quiz)) {}
+                MainTab.Quiz -> QuizScreen()
                 MainTab.Settings -> SettingsScreen()
                 MainTab.Profile -> ProfileScreen()
             }

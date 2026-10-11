@@ -18,4 +18,5 @@ object AppSpacing {
     val radiusCard = 12.dp
     val radiusField = 10.dp
     val avatar = 72.dp
+    val progressIndicatorLarge = 32.dp
 }
