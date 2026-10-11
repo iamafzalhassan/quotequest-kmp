@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">QuoteQuest</string>
+    <string name="splash_tagline">Who said it?</string>
+    <string name="login_title">Welcome back</string>
+    <string name="login_subtitle">Log in to start the quiz</string>
+    <string name="login_email_label">Email</string>
+    <string name="login_email_hint">you@example.com</string>
+    <string name="login_password_label">Password</string>
+    <string name="login_password_hint">Enter your password</string>
+    <string name="login_password_show">Show</string>
+    <string name="login_password_hide">Hide</string>
+    <string name="login_button">Log in</string>
+    <string name="error_email_required">Please enter your email</string>
+    <string name="error_password_required">Please enter your password</string>
+    <string name="error_invalid_credentials">Wrong email or password</string>
+    <string name="error_server">Something went wrong. Please try again.</string>
+    <string name="error_connection">Can\'t reach the server. Check your connection.</string>
+</resources>
