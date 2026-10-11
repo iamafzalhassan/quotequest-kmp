@@ -49,6 +49,8 @@ androidx-datastorePreferences = { module = "androidx.datastore:datastore-prefere
 androidx-navigationCompose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
 androidx-coreSplashscreen = { module = "androidx.core:core-splashscreen", version.ref = "androidx-coreSplashscreen" }
 ktor-clientLogging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
+kotlinx-coroutinesTest = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines" }
+ktor-clientMock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
