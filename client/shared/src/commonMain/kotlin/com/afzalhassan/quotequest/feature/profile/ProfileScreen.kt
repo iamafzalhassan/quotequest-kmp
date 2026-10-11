@@ -11,11 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.afzalhassan.quotequest.core.data.ProfileResponse
 import com.afzalhassan.quotequest.core.ui.components.AppCard
 import com.afzalhassan.quotequest.core.ui.components.ErrorState
 import com.afzalhassan.quotequest.core.ui.components.SecondaryButton
 import com.afzalhassan.quotequest.core.ui.components.TabPage
-import com.afzalhassan.quotequest.core.data.ProfileResponse
 import com.afzalhassan.quotequest.core.ui.theme.AppColors
 import com.afzalhassan.quotequest.core.ui.theme.AppSpacing
 import com.afzalhassan.quotequest.core.ui.theme.AppTheme
@@ -36,19 +36,24 @@ private fun ProfileContent(state: ProfileUiState, onRetry: () -> Unit, onLogout:
     TabPage(
         title = stringResource(Res.string.tab_profile),
         isLoading = state.profile == null && state.error == null,
+        error = state.error,
+        onRetry = onRetry,
+        errorActions = { LogoutButton(isLoggingOut = state.isLoggingOut, onLogout = onLogout) },
     ) {
-        when {
-            state.profile != null -> ProfileCard(state.profile)
-            state.error != null -> ErrorState(message = state.error, onRetry = onRetry)
-        }
-        SecondaryButton(
-            text = stringResource(Res.string.profile_logout),
-            onClick = onLogout,
-            color = AppColors.danger,
-            isLoading = state.isLoggingOut,
-            modifier = Modifier.fillMaxWidth(),
-        )
+        state.profile?.let { ProfileCard(it) }
+        LogoutButton(isLoggingOut = state.isLoggingOut, onLogout = onLogout)
     }
+}
+
+@Composable
+private fun LogoutButton(isLoggingOut: Boolean, onLogout: () -> Unit) {
+    SecondaryButton(
+        text = stringResource(Res.string.profile_logout),
+        onClick = onLogout,
+        color = AppColors.danger,
+        isLoading = isLoggingOut,
+        modifier = Modifier.fillMaxWidth(),
+    )
 }
 
 @Composable

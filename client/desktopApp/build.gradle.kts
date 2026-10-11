@@ -26,3 +26,7 @@ compose.desktop {
         }
     }
 }
+
+tasks.withType<JavaExec>().configureEach {
+    systemProperty("quotequest.httpLogs", "true")
+}

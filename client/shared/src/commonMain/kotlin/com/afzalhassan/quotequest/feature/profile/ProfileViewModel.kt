@@ -25,15 +25,15 @@ class ProfileViewModel(
     }
 
     fun load() {
-        _state.update { it.copy(isLoading = true, error = null) }
+        _state.update { it.copy(error = null) }
         viewModelScope.launch {
             try {
                 val profile = api.profile()
-                _state.update { it.copy(profile = profile, isLoading = false) }
+                _state.update { it.copy(profile = profile) }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                _state.update { it.copy(isLoading = false, error = e.toMessage()) }
+                _state.update { it.copy(error = e.toMessage()) }
             }
         }
     }

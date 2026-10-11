@@ -15,5 +15,5 @@ object AppColors {
     val textDisabled = Color(0xFFB5B3AA)
     val success = Color(0xFF1B6B4F)
     val danger = Color(0xFFB3352A)
-    val validationError = Color(0xFFFF0000)
+    val validationError = Color(0xFFFF0000) /* requested color. do not change #F00 */
 }

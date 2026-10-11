@@ -15,7 +15,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.afzalhassan.quotequest.core.ui.components.TabPage
 import com.afzalhassan.quotequest.feature.profile.ProfileScreen
 import com.afzalhassan.quotequest.feature.quiz.QuizScreen
 import com.afzalhassan.quotequest.feature.settings.SettingsScreen

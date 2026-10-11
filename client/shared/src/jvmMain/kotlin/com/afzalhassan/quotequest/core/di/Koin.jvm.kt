@@ -10,8 +10,21 @@ import java.io.File
 fun initKoin() {
     startKoin {
         modules(appModule, module {
-            single { createDataStore(File(System.getProperty("user.home"), ".quotequest/$DATA_STORE_FILE").absolutePath) }
-            single { createHttpClient("http://localhost:8080", get()) }
+            single {
+                createDataStore(
+                    File(
+                        System.getProperty("user.home"),
+                        ".quotequest/$DATA_STORE_FILE"
+                    ).absolutePath
+                )
+            }
+            single {
+                createHttpClient(
+                    "http://localhost:8080",
+                    get(),
+                    isLoggingEnabled = System.getProperty("quotequest.httpLogs") == "true",
+                )
+            }
         })
     }
 }

@@ -31,6 +31,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.afzalhassan.quotequest.core.ui.components.AppTextField
+import com.afzalhassan.quotequest.core.ui.components.InlineError
 import com.afzalhassan.quotequest.core.ui.components.PrimaryButton
 import com.afzalhassan.quotequest.core.ui.theme.AppColors
 import com.afzalhassan.quotequest.core.ui.theme.AppSpacing
@@ -129,14 +130,7 @@ private fun LoginContent(
                     }
                 },
             )
-            state.formError?.let {
-                Text(
-                    text = stringResource(it),
-                    style = AppTheme.textStyles.label.copy(color = AppColors.danger),
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
+            state.formError?.let { InlineError(stringResource(it)) }
             PrimaryButton(
                 text = stringResource(Res.string.login_button),
                 onClick = submit,

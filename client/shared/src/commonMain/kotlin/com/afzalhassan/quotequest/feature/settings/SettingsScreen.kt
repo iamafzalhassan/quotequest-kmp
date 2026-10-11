@@ -6,10 +6,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.afzalhassan.quotequest.core.data.QuizMode
 import com.afzalhassan.quotequest.core.ui.components.AppCard
 import com.afzalhassan.quotequest.core.ui.components.ChoiceRow
 import com.afzalhassan.quotequest.core.ui.components.TabPage
-import com.afzalhassan.quotequest.core.data.QuizMode
 import com.afzalhassan.quotequest.core.ui.theme.AppSpacing
 import com.afzalhassan.quotequest.core.ui.theme.AppTheme
 import org.jetbrains.compose.resources.StringResource

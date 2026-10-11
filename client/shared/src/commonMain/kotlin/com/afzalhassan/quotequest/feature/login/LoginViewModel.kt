@@ -56,10 +56,15 @@ class LoginViewModel(
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Exception) {
-                _state.update { it.copy(isLoading = false, formError = e.toMessage()) }
+                _state.update { it.copy(isLoading = false, formError = e.toLoginMessage()) }
             }
         }
     }
 }
 
-private fun Exception.toLoginMessage(): StringResource = (this as? ClientRequestException)?.takeIf { it.response.status == HttpStatusCode.Unauthorized }?.let { Res.string.error_invalid_credentials } ?: toMessage()
+private fun Exception.toLoginMessage(): StringResource =
+    if (this is ClientRequestException && response.status == HttpStatusCode.Unauthorized) {
+        Res.string.error_invalid_credentials
+    } else {
+        toMessage()
+    }

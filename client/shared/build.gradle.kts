@@ -54,6 +54,10 @@ kotlin {
             implementation(libs.koin.composeViewmodel)
             implementation(libs.androidx.datastorePreferences)
             implementation(libs.androidx.navigationCompose)
+            implementation(libs.ktor.clientCore)
+            implementation(libs.ktor.clientContentNegotiation)
+            implementation(libs.ktor.serializationKotlinxJson)
+            implementation(libs.ktor.clientLogging)
         }
         jvmMain.dependencies {
             implementation(libs.ktor.clientOkhttp)

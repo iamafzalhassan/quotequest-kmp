@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
@@ -23,14 +22,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.afzalhassan.quotequest.core.ui.components.ActivityIndicator
+import com.afzalhassan.quotequest.core.data.AnswerResponse
+import com.afzalhassan.quotequest.core.data.QuizMode
 import com.afzalhassan.quotequest.core.ui.components.AppCard
 import com.afzalhassan.quotequest.core.ui.components.ErrorState
+import com.afzalhassan.quotequest.core.ui.components.InlineError
 import com.afzalhassan.quotequest.core.ui.components.PrimaryButton
 import com.afzalhassan.quotequest.core.ui.components.SecondaryButton
 import com.afzalhassan.quotequest.core.ui.components.TabPage
-import com.afzalhassan.quotequest.core.data.AnswerResponse
-import com.afzalhassan.quotequest.core.data.QuizMode
 import com.afzalhassan.quotequest.core.ui.theme.AppColors
 import com.afzalhassan.quotequest.core.ui.theme.AppSpacing
 import com.afzalhassan.quotequest.core.ui.theme.AppTheme
@@ -67,21 +66,18 @@ private fun QuizContent(
     onNext: () -> Unit,
     onRestart: () -> Unit,
 ) {
-    TabPage(title = stringResource(Res.string.tab_quiz), isLoading = state is QuizUiState.Loading) {
+    TabPage(
+        title = stringResource(Res.string.tab_quiz),
+        isLoading = state is QuizUiState.Loading,
+        error = (state as? QuizUiState.Error)?.message,
+        onRetry = onRestart,
+    ) {
         when (state) {
-            QuizUiState.Loading -> Unit
-            is QuizUiState.Error -> ErrorState(message = state.message, onRetry = onRestart)
+            QuizUiState.Loading, is QuizUiState.Error -> Unit
             is QuizUiState.Playing -> {
                 Progress(index = state.index, total = state.questions.size, score = state.score)
                 Question(state)
-                state.error?.let {
-                    Text(
-                        text = stringResource(it),
-                        style = AppTheme.textStyles.label.copy(color = AppColors.danger),
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth(),
-                    )
-                }
+                state.error?.let { InlineError(stringResource(it)) }
                 AnswerButtons(state, onAnswer)
                 state.feedback?.let { FeedbackDialog(it, onOk = onNext) }
             }

@@ -2,6 +2,7 @@ package com.afzalhassan.quotequest.core.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,7 +16,12 @@ import quotequest.shared.generated.resources.Res
 import quotequest.shared.generated.resources.action_retry
 
 @Composable
-fun ErrorState(message: StringResource, onRetry: () -> Unit, modifier: Modifier = Modifier) {
+fun ErrorState(
+    message: StringResource,
+    onRetry: () -> Unit,
+    modifier: Modifier = Modifier,
+    actions: @Composable ColumnScope.() -> Unit = {},
+) {
     Column(modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(AppSpacing.lg)) {
         Text(
             text = stringResource(message),
@@ -24,5 +30,6 @@ fun ErrorState(message: StringResource, onRetry: () -> Unit, modifier: Modifier 
             modifier = Modifier.fillMaxWidth(),
         )
         SecondaryButton(text = stringResource(Res.string.action_retry), onClick = onRetry, modifier = Modifier.fillMaxWidth())
+        actions()
     }
 }
