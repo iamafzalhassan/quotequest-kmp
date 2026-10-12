@@ -10,9 +10,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 
-private const val SPLASH_MIN_MILLIS = 500L
-
 class AppViewModel(localStore: LocalStore) : ViewModel() {
 
-    val isLoggedIn: StateFlow<Boolean?> = localStore.token.map { it != null }.onStart { delay(SPLASH_MIN_MILLIS) }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
+    val isLoggedIn: StateFlow<Boolean?> = localStore.token.map { it != null }.onStart { delay(splashMinMillis) }.stateIn(viewModelScope, SharingStarted.Eagerly, null)
 }

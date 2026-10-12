@@ -20,8 +20,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.semantics.contentType
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.VisualTransformation
@@ -38,6 +40,7 @@ fun AppTextField(
     modifier: Modifier = Modifier,
     error: String? = null,
     enabled: Boolean = true,
+    contentType: ContentType? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None,
@@ -58,7 +61,10 @@ fun AppTextField(
             onValueChange = onValueChange,
             modifier = Modifier
                 .fillMaxWidth()
-                .semantics { if (error != null) error(error) },
+                .semantics {
+                    if (error != null) error(error)
+                    if (contentType != null) this.contentType = contentType
+                },
             enabled = enabled,
             textStyle = AppTheme.textStyles.fieldValue,
             keyboardOptions = keyboardOptions,

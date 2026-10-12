@@ -6,6 +6,6 @@ import com.afzalhassan.quotequest.core.di.initKoin
 class QuoteQuestApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        initKoin(this)
+        initKoin(this, BuildConfig.SERVER_URL)
     }
 }

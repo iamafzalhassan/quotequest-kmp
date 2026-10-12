@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import java.io.File
 
-fun initKoin() {
+fun initKoin(serverUrl: String) {
     startKoin {
         modules(appModule, module {
             single {
@@ -20,7 +20,7 @@ fun initKoin() {
             }
             single {
                 createHttpClient(
-                    "http://localhost:8080",
+                    serverUrl,
                     get(),
                     isLoggingEnabled = System.getProperty("quotequest.httpLogs") == "true",
                 )

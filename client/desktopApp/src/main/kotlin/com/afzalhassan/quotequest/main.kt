@@ -12,7 +12,7 @@ import java.awt.Dimension
 import java.awt.GraphicsEnvironment
 
 fun main() {
-    initKoin()
+    initKoin(serverUrl = System.getProperty("quotequest.serverUrl") ?: "http://localhost:8080")
     val screen = GraphicsEnvironment.getLocalGraphicsEnvironment().maximumWindowBounds
     application {
         Window(

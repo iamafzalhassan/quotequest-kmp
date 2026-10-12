@@ -21,6 +21,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.autofill.ContentType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
@@ -101,6 +102,7 @@ private fun LoginContent(
                 hint = stringResource(Res.string.login_email_hint),
                 error = state.emailError?.let { stringResource(it) },
                 enabled = !state.isLoading,
+                contentType = ContentType.Username,
                 keyboardOptions = KeyboardOptions(
                     capitalization = KeyboardCapitalization.None,
                     autoCorrectEnabled = false,
@@ -115,6 +117,7 @@ private fun LoginContent(
                 hint = stringResource(Res.string.login_password_hint),
                 error = state.passwordError?.let { stringResource(it) },
                 enabled = !state.isLoading,
+                contentType = ContentType.Password,
                 keyboardOptions = KeyboardOptions(
                     autoCorrectEnabled = false,
                     keyboardType = KeyboardType.Password,
